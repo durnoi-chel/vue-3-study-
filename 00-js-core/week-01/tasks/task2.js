@@ -22,15 +22,15 @@ function myReduce(arr = [], callback, initialValue )  {
     }
     let acc;
     let startIndex;
-    if(initialValue === undefined)  {
+    if(initialValue === undefined)  { // проверяем задано ли стартовое значение что бы если что не брать его дважды в случае отсутствия 
         acc = arr[0];
         startIndex = 1;
     } else  {
         acc = initialValue;
         startIndex = 0
     }
-    for(let i = startIndex; i < arr.length; i++)  {
-        acc = callback(acc, arr[i], i, arr);
+    for(let i = startIndex; i < arr.length; i++)  { // снова проверка на то что бы мы не дублировали элемент с индексом 0 дважды в случае отсутсвия заданного value
+        acc = callback(acc, arr[i], i, arr); // используем в цикле для полного прохождения всех элементов и потому что acc будет использоваться в следующих шагах Ы
     }
     return acc;
 }
