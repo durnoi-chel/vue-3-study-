@@ -1,15 +1,15 @@
 function myMap(arr = [] , callback)  {
-    const newArr = [];
+    const newArr = [];// создаём новый масив что бы не вносить изменения в существующий
     for(let i=0; i<=arr.length -1; i++)  {
-        newArr.push(callback(arr[i]));
+        newArr.push(callback(arr[i]));//вызываем callback переданную пользователем 
     }
     return newArr;
 }
 function myFilter(arr = [], callback)  {
-    const newArr = [];
+    const newArr = []; // создаём новый масив что бы не вносить изменения в существующий
     for(let i=0; i < arr.length; i++)  {
         if(callback(arr[i]))  {
-            newArr.push(arr[i]);
+            newArr.push(arr[i]); //используем метод push для массива  изменяем объекты внутри масива 
         }
     };
     return newArr;
@@ -36,13 +36,16 @@ function myReduce(arr = [], callback, initialValue )  {
 }
 
 
+
+// Тест для myMap
 const arr = [1, 2, 3];
 const mapped = myMap(arr, x => x * 2);
 console.assert(JSON.stringify(mapped) === '[2,4,6]', 'myMap failed');
+
+// Тест для myFilter
 const filtered = myFilter(arr, x => x > 1);
 console.assert(JSON.stringify(filtered) === '[2,3]', 'myFilter failed');
-const nums = [1, 2, 3, 4];
 
-// Тест 1: Сумма с начальным значением 0
-const sum = myReduce(nums, (acc, num) => acc + num, 0);
-console.assert(sum === 10, 'Sum failed'); // 0+1+2+3+4 = 10
+// Тест для myReduce
+const sum = myReduce(arr, (acc, x) => acc + x, 0);
+console.assert(sum === 6, 'myReduce failed');
